@@ -1,17 +1,26 @@
-<app-header></app-header>
+<app-header />
 
 <main>
-    <ul id="users">
-        @for (user of users; track user.id) {
-            <li>
-                <app-user [user]="user" [selected]="user.id === selectedUserId" (select)="onSelectUser($event)" />
-            </li>
-        }
-    </ul>
+    <div id="dashboard">
+        <app-dashboard-item
+            [image]="{ src: 'status.png', alt: 'A signal simbol' }"
+            title="Server status"
+        >
+            <app-server-status />
+        </app-dashboard-item>
 
-    @if (selectedUser) {
-        <app-tasks [userId]="selectedUser.id" [name]="selectedUser.name" />
-    } @else {
-        <p id="fallback">Select user to see tasks!</p>
-    }
+        <app-dashboard-item
+            [image]="{ src: 'globe.png', alt: 'A globe' }"
+            title="Traffic"
+        >
+            <app-traffic />
+        </app-dashboard-item>
+
+        <app-dashboard-item
+            [image]="{ src: 'list.png', alt: 'A list of items' }"
+            title="Support Tickets"
+        >
+            <app-tickets />
+        </app-dashboard-item>
+    </div>
 </main>
